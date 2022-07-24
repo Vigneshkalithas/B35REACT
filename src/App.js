@@ -14,7 +14,7 @@ function App() {
   let fetchData = async () => {
     try{
 
-      let result =  await axios.get('http://localhost:4000/students')
+      let result =  await axios.get('https://crud-app-node-react.herokuapp.com/students')
       // console.log(result.data);
       setUsers(result.data);
 
@@ -47,12 +47,12 @@ function App() {
       try{
         if(!isEditing){
 
-        await axios.post('http://localhost:4000/students',values);
+        await axios.post('https://crud-app-node-react.herokuapp.com/students',values);
         fetchData()
         }
         else {
           delete values._id
-          await axios.put(`http://localhost:4000/students/${currentUser._id}`,values);
+          await axios.put(`https://crud-app-node-react.herokuapp.com/students/${currentUser._id}`,values);
         fetchData()
           setIsEditing(false);
         }
@@ -69,7 +69,7 @@ function App() {
 
   const handleEdit = async(id) => {
     try{
-      let students = await axios.get(`http://localhost:4000/students/${id}`);
+      let students = await axios.get(`https://crud-app-node-react.herokuapp.com/students/${id}`);
       formik.setValues(students.data);
       setIsEditing(true);
       setCurrentUser(students.data);
@@ -82,7 +82,7 @@ function App() {
 
   const handleDelete = async(id) => {
     try{
-          await axios.delete(`http://localhost:4000/students/${id}`)
+          await axios.delete(`https://crud-app-node-react.herokuapp.com/students/${id}`)
           fetchData()
     }
     catch(error){
